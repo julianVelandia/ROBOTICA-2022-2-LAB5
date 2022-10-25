@@ -1,6 +1,5 @@
-
+from get_points import read_csv
 
 
 if __name__ == '__main__':
-    print('hola')
-
+    print(read_csv())
