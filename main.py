@@ -5,4 +5,5 @@ if __name__ == '__main__':
     ph = PhantomX()
 
     # Si read_csv() se envia vacio, ejecuta test.csv
-    ph.joint_publisher(read_csv('csv/points.csv'))
+    # joint_publisher recibe is_degree
+    ph.joint_publisher(read_csv('csv/points.csv'), True)

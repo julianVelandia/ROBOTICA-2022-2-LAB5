@@ -1,12 +1,45 @@
+'''
+import rospy
+from std_msgs.msg import String
+from sensor_msgs.msg import JointState
+from trajectory_msgs.msg import JointTrajectory, JointTrajectoryPoint
+import termios, sys, os
+from numpy import pi
+
+TERMIOS = termios
+'''
+import math
+
+
 class PhantomX:
 
-    def joint_publisher(self, points: [[]]):
+    def joint_publisher(self, points: [[]], is_degree=None):
+        '''
+        pub = rospy.Publisher('/joint_trajectory', JointTrajectory, queue_size=0)
+        rospy.init_node('joint_publisher', anonymous=False)
+        state = JointTrajectory()
+        state.header.stamp = rospy.Time.now()
+        state.joint_names = ["joint_1", "joint_2", "joint_3", "joint_4", "joint_5"]
+        point = JointTrajectoryPoint()
+        '''
         for point in points:
             if point[0] == '':
                 if menu_while() == 'x':
                     break
+                else:
+                    continue
 
-            print(point)
+            if is_degree is None:
+                print(point)
+            else:
+                print(degrees_to_radians(point))
+            '''
+            point.positions = point
+            point.time_from_start = rospy.Duration(0.5)
+            state.points.append(point)
+            pub.publish(state)
+            rospy.sleep(1)
+            '''
 
 
 def menu_while():
@@ -17,3 +50,7 @@ def menu_while():
         if key.lower() == 'x' or key.lower() == 'c':
             break
     return key
+
+
+def degrees_to_radians(degrees: []):
+    return list(map(lambda d: (float(d) * math.pi / 180), degrees))
