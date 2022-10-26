@@ -3,7 +3,7 @@ import csv
 
 def read_csv(file_name=None):
     if file_name is None:
-        file_name = 'points.csv'
+        file_name = 'csv/test.csv'
 
     response = []
     with open(file_name, newline='') as File:

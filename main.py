@@ -1,5 +1,8 @@
 from get_points import read_csv
-
+from robot import PhantomX
 
 if __name__ == '__main__':
-    print(read_csv())
+    ph = PhantomX()
+
+    # Si read_csv() se envia vacio, ejecuta test.csv
+    ph.joint_publisher(read_csv('csv/points.csv'))
