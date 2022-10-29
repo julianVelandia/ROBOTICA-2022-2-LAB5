@@ -5,10 +5,10 @@ L4 = 91;
 L(1) = Link('revolute','qlim',[0 pi],'d',L1,'a',0,'alpha',pi/2,'offset',0);
 L(2) = Link('revolute','qlim',[0 pi],'d',0,'a',L2,'alpha',0,'offset',0);
 L(3) = Link('revolute','qlim',[0 pi],'d',0,'a',L3,'alpha',0,'offset',0);
-L(4) = Link('revolute','qlim',[0 pi],'d',0,'a',L4,'alpha',-pi/2,'offset',0);
+L(4) = Link('revolute','qlim',[0 pi],'d',0,'a',0,'alpha',pi/2,'offset',pi/2);
 
 ROBOT = SerialLink(L,'name','Rob');
-ROBOT.tool = transl(0,0,0);
+ROBOT.tool = transl(0,0,L4);
 %%
 figure(1)
 ROBOT.plot([0 0 0 0],'notiles','noname');
@@ -37,12 +37,12 @@ r = sqrt(x^2+z^2);
 a = sqrt((L1+d)^2+r^2)-L4;
 q_1 = atan(y/x);
 q_2 = acos(a/(2*L2));
-q_3 = -acos(((a^2)/(2*L2^2))-1);
-q_4 = q_2;
+q_3 = acos(((a^2)/(2*L2^2))-1);
+q_4 = q2;
 Q = [q_1 q_2 q_3 q_4]*(180/pi)
 
-figure(2)
-ROBOT.plot([q_1 q_2 q_3 q_4],'notiles','noname');
+%figure(2)
+%ROBOT.plot([q_1 q_2 q_3 q_4],'notiles','noname');
 
 
 q = ROBOT.ikine(T,'q0',[0 0 0 0],'mask',[1 1 1 1 0 0])

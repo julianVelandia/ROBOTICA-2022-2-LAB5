@@ -18,17 +18,18 @@ class PhantomX:
         state.joint_names = ["joint_1", "joint_2", "joint_3", "joint_4", "joint_5"]
         point = JointTrajectoryPoint()
 
-        for point in points:
-            if point[0] == '':
+        for pointArray in points:
+            if pointArray[0] == '':
                 if menu_while() == 'x':
                     break
                 else:
                     continue
 
             if is_degree is not None:
-                point = degrees_to_radians(point)
+                pointArray = degrees_to_radians(pointArray)
 
-            point.positions = point
+	
+            point.positions = pointArray
             point.time_from_start = rospy.Duration(0.5)
             state.points.append(point)
             pub.publish(state)

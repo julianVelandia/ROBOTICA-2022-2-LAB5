@@ -1,4 +1,4 @@
-from get_points import read_csv
+from get_points import read_csv_XY
 from robot import PhantomX
 
 if __name__ == '__main__':
@@ -6,4 +6,4 @@ if __name__ == '__main__':
 
     # Si read_csv() se envia vacio, ejecuta test.csv
     # joint_publisher recibe is_degree
-    ph.joint_publisher(read_csv('csv/points.csv'), True)
+    ph.joint_publisher(read_csv_XY())
