@@ -27,22 +27,37 @@ q1 = 0;
 q2 = 0;
 q3 = 0;
 q4 = 0;
-MTH_TCP = subs(H40)
-T = MTH_TCP;
-d = 80;
-x = 200;
-z = L1+d;
-y=0;
-r = sqrt(x^2+z^2);
-a = sqrt((L1+d)^2+r^2)-L4;
-q_1 = atan(y/x);
-q_2 = acos(a/(2*L2));
-q_3 = -acos(((a^2)/(2*L2^2))-1);
-q_4 = q_2;
-Q = [q_1 q_2 q_3 q_4]*(180/pi)
+MTH_TCP = subs(H40);
 
-figure(2)
-ROBOT.plot([q_1 q_2 q_3 q_4],'notiles','noname');
+%figure(2)
+%ROBOT.plot([q_1 q_2 q_3 q_4],'notiles','noname');
 
 
-q = ROBOT.ikine(T,'q0',[0 0 0 0],'mask',[1 1 1 1 0 0])
+%q = ROBOT.ikine(T,'q0',[0 0 0 0],'mask',[1 1 1 1 0 0])
+%% 
+%Triangulo
+
+Puntos = [-40 230 40; 10 230 40; 10 250 40];
+Ql = [];
+for i = 1:3
+    cla
+    x = Puntos(i,1);
+    y = Puntos(i,2);
+    z = Puntos(i,3);
+    D = sqrt(x^2+y^2);
+    beta = atan((z-L1)/D);
+    r = sqrt(D^2-z^2);
+    cosAlfa = (r-L4)/(2*L2);
+    sinAlfa = sqrt(1-cosAlfa^2);
+    Alfa = atan2(sinAlfa,cosAlfa);
+    q_1 = atan2(y,x);
+    q_2 = Alfa+beta;
+    cosQ3 = ((r-L4)^2/(2*L2^2))-1;
+    sinQ3 = sqrt(1-cosQ3^2);
+    q_3 = -atan2(sinQ3,cosQ3);
+    q_4 = Alfa;
+    Q = [q_1 q_2 q_3 q_4];%*(180/pi);
+    Ql = [Ql;Q];
+    ROBOT.plot(Q,'notiles','noname');
+end
+XYz = ROBOT.fkine(Ql(1,:))
