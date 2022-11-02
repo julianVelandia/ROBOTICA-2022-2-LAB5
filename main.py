@@ -6,4 +6,4 @@ if __name__ == '__main__':
 
     # Si read_csv() se envia vacio, ejecuta test.csv
     # joint_publisher recibe is_degree
-    ph.joint_publisher(read_csv_XY())
+    ph.joint_publisher()
