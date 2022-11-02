@@ -37,6 +37,6 @@ def read_csv_XY(pointer):
             
             Q.append([q_1,q_2,q_3,q_4,q_5])
         else:
-            pass
+            Q = []
     
     return Q

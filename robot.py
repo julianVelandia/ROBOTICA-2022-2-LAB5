@@ -29,22 +29,56 @@ class PhantomX:
                 pub.publish(state)
                 rospy.sleep(1)
 
-            elif key == 'espacio':
+            elif key == 'marcador':
                 pointer = 100
                 points = read_csv_XY(pointer)
                 for pointArray in points:
-                    if pointArray == '':
-                        dialog = input("presione a para hacer otra figura o c para continuar")
+                    if pointArray == []:
+                        pointArray[4]=-math.pi/2
+                        point.positions = pointArray
+                        point.time_from_start = rospy.Duration(0.5)
+                        state.points.append(point)
+                        pub.publish(state)
+                        rospy.sleep(1)
+                        dialog = input("presione a para hacer una figura")
                         if dialog == 'a':
                             break
-                        elif dialog== 'c': 
-                            continue
+                    pointArray[4]=0
+                    point.positions = pointArray
+                    point.time_from_start = rospy.Duration(0.5)
+                    state.points.append(point)
+                    pub.publish(state)
+                    rospy.sleep(1)
+            
+                pointArray[4] = 12
+                point.positions = pointArray
+                point.time_from_start = rospy.Duration(0.5)
+                state.points.append(point)
+                pub.publish(state)
+                rospy.sleep(1)
+                pass
+
+            elif key == 'espacio':
+                pointer = 50
+                points = read_csv_XY(pointer)
+                for pointArray in points:
+                    if pointArray == []:
+                        dialog = input("presione a para hacer otra figura")
+                        if dialog == 'a':
+                            break
 
                     point.positions = pointArray
                     point.time_from_start = rospy.Duration(0.5)
                     state.points.append(point)
                     pub.publish(state)
                     rospy.sleep(1)
+            
+                pointArray[4] = 12
+                point.positions = pointArray
+                point.time_from_start = rospy.Duration(0.5)
+                state.points.append(point)
+                pub.publish(state)
+                rospy.sleep(1)
                 pass
 
             elif key == 'triangulo':
@@ -52,7 +86,7 @@ class PhantomX:
                 pointer = 1
                 points = read_csv_XY(pointer)
                 for pointArray in points:
-                    if pointArray == '':
+                    if pointArray == []:
                         dialog = input("presione a para hacer otra figura")
                         if dialog == 'a':
                             break
@@ -62,6 +96,13 @@ class PhantomX:
                     state.points.append(point)
                     pub.publish(state)
                     rospy.sleep(1)
+                
+                pointArray[4] = 12
+                point.positions = pointArray
+                point.time_from_start = rospy.Duration(0.5)
+                state.points.append(point)
+                pub.publish(state)
+                rospy.sleep(1)
                 pass
                 
             elif key == 'j':
@@ -69,7 +110,7 @@ class PhantomX:
                 pointer = 6
                 points = read_csv_XY(pointer)
                 for pointArray in points:
-                    if pointArray == '':
+                    if pointArray == []:
                         dialog = input("presione a para hacer otra figura")
                         if dialog == 'a':
                             break
@@ -79,6 +120,13 @@ class PhantomX:
                     state.points.append(point)
                     pub.publish(state)
                     rospy.sleep(1)
+
+                pointArray[4] = 12
+                point.positions = pointArray
+                point.time_from_start = rospy.Duration(0.5)
+                state.points.append(point)
+                pub.publish(state)
+                rospy.sleep(1)
                 pass
             
             elif key == 'x':
