@@ -4,6 +4,7 @@ from sensor_msgs.msg import JointState
 from trajectory_msgs.msg import JointTrajectory, JointTrajectoryPoint
 import termios, sys, os
 import math
+import time
 from get_points import read_csv_XY
 
 TERMIOS = termios
@@ -30,51 +31,41 @@ class PhantomX:
                 rospy.sleep(1)
 
             elif key == 'marcador':
-                pointer = 100
-                points = read_csv_XY(pointer)
+                pointer = 99
+                points = (read_csv_XY(pointer,math.pi/2))
+                pointArray2 = []
                 for pointArray in points:
-                    if pointArray == []:
-                        pointArray[4]=-math.pi/2
-                        point.positions = pointArray
-                        point.time_from_start = rospy.Duration(0.5)
-                        state.points.append(point)
-                        pub.publish(state)
-                        rospy.sleep(1)
-                        dialog = input("presione a para hacer una figura")
-                        if dialog == 'a':
-                            break
-                    pointArray[4]=0
+
+                    pointArray[4]=math.pi/2
                     point.positions = pointArray
                     point.time_from_start = rospy.Duration(0.5)
                     state.points.append(point)
                     pub.publish(state)
                     rospy.sleep(1)
-            
-                pointArray[4] = 12
-                point.positions = pointArray
-                point.time_from_start = rospy.Duration(0.5)
-                state.points.append(point)
-                pub.publish(state)
-                rospy.sleep(1)
-                pass
+                    pointArray2=pointArray
+                
+                #pointArray2 = [0, -math.pi/4, 0, 0, math.pi/2]  
+                #point.positions = pointArray2
+                #point.time_from_start = rospy.Duration(0.5)
+                #state.points.append(point)
+                #pub.publish(state)
+                #rospy.sleep(1)
+                #pass
 
             elif key == 'espacio':
-                pointer = 50
-                points = read_csv_XY(pointer)
+                pointer = 49
+                points = (read_csv_XY(pointer,math.pi/2))
+                pointArray2 = []
                 for pointArray in points:
-                    if pointArray == []:
-                        dialog = input("presione a para hacer otra figura")
-                        if dialog == 'a':
-                            break
-
                     point.positions = pointArray
                     point.time_from_start = rospy.Duration(0.5)
                     state.points.append(point)
                     pub.publish(state)
                     rospy.sleep(1)
-            
-                pointArray[4] = 12
-                point.positions = pointArray
+                    pointArray2=pointArray
+                
+                pointArray2 = [0, -math.pi/2, 0, 0, math.pi/2]  
+                point.positions = pointArray2
                 point.time_from_start = rospy.Duration(0.5)
                 state.points.append(point)
                 pub.publish(state)
@@ -83,27 +74,25 @@ class PhantomX:
 
             elif key == 'triangulo':
                 
-                pointer = 1
-                points = read_csv_XY(pointer)
+                pointer = 0
+                points =(read_csv_XY(pointer,math.pi/2))
+                pointArray2 = []
                 for pointArray in points:
-                    if pointArray == []:
-                        dialog = input("presione a para hacer otra figura")
-                        if dialog == 'a':
-                            break
-
+                    print(pointArray)
                     point.positions = pointArray
                     point.time_from_start = rospy.Duration(0.5)
                     state.points.append(point)
                     pub.publish(state)
-                    rospy.sleep(1)
-                
-                pointArray[4] = 12
-                point.positions = pointArray
-                point.time_from_start = rospy.Duration(0.5)
-                state.points.append(point)
-                pub.publish(state)
-                rospy.sleep(1)
-                pass
+                    rospy.sleep(2)
+                    time.sleep(1)
+                    
+                #pointArray2 = [0, -math.pi/4, 0, 0, math.pi/2] 
+                #point.positions = pointArray2
+                #point.time_from_start = rospy.Duration(0.5)
+                #state.points.append(point)
+                #pub.publish(state)
+                #rospy.sleep(1)
+                #pass
                 
             elif key == 'j':
                 
