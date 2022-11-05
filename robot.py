@@ -31,7 +31,7 @@ class PhantomX:
                 rospy.sleep(1)
 
             elif key == 'marcador':
-                pointer = 99
+                pointer = 100
                 points = (read_csv_XY(pointer,math.pi/2))
                 pointArray2 = []
                 for pointArray in points:
@@ -42,41 +42,22 @@ class PhantomX:
                     state.points.append(point)
                     pub.publish(state)
                     rospy.sleep(1)
-                    pointArray2=pointArray
-                
-                #pointArray2 = [0, -math.pi/4, 0, 0, math.pi/2]  
-                #point.positions = pointArray2
-                #point.time_from_start = rospy.Duration(0.5)
-                #state.points.append(point)
-                #pub.publish(state)
-                #rospy.sleep(1)
-                #pass
 
             elif key == 'espacio':
-                pointer = 49
+                pointer = 50
                 points = (read_csv_XY(pointer,math.pi/2))
-                pointArray2 = []
                 for pointArray in points:
                     point.positions = pointArray
                     point.time_from_start = rospy.Duration(0.5)
                     state.points.append(point)
                     pub.publish(state)
-                    rospy.sleep(1)
-                    pointArray2=pointArray
-                
-                pointArray2 = [0, -math.pi/2, 0, 0, math.pi/2]  
-                point.positions = pointArray2
-                point.time_from_start = rospy.Duration(0.5)
-                state.points.append(point)
-                pub.publish(state)
-                rospy.sleep(1)
-                pass
+                    rospy.sleep(2)
+                    time.sleep(1)
 
             elif key == 'triangulo':
                 
                 pointer = 0
                 points =(read_csv_XY(pointer,math.pi/2))
-                pointArray2 = []
                 for pointArray in points:
                     print(pointArray)
                     point.positions = pointArray
@@ -85,19 +66,37 @@ class PhantomX:
                     pub.publish(state)
                     rospy.sleep(2)
                     time.sleep(1)
-                    
-                #pointArray2 = [0, -math.pi/4, 0, 0, math.pi/2] 
-                #point.positions = pointArray2
-                #point.time_from_start = rospy.Duration(0.5)
-                #state.points.append(point)
-                #pub.publish(state)
-                #rospy.sleep(1)
-                #pass
-                
-            elif key == 'j':
+
+            elif key == 'circulo':
                 
                 pointer = 6
-                points = read_csv_XY(pointer)
+                points =(read_csv_XY(pointer,math.pi/2))
+                for pointArray in points:
+                    print(pointArray)
+                    point.positions = pointArray
+                    point.time_from_start = rospy.Duration(0.5)
+                    state.points.append(point)
+                    pub.publish(state)
+                    rospy.sleep(2)
+                    time.sleep(1)
+
+            elif key == 'lineas':
+                
+                pointer = 17
+                points =(read_csv_XY(pointer,math.pi/2))
+                for pointArray in points:
+                    print(pointArray)
+                    point.positions = pointArray
+                    point.time_from_start = rospy.Duration(0.5)
+                    state.points.append(point)
+                    pub.publish(state)
+                    rospy.sleep(2)
+                    time.sleep(1)    
+                
+            elif key == 'c':
+                
+                pointer = 32
+                points = read_csv_XY(pointer,math.pi/2)
                 for pointArray in points:
                     if pointArray == []:
                         dialog = input("presione a para hacer otra figura")
@@ -108,15 +107,21 @@ class PhantomX:
                     point.time_from_start = rospy.Duration(0.5)
                     state.points.append(point)
                     pub.publish(state)
-                    rospy.sleep(1)
-
-                pointArray[4] = 12
-                point.positions = pointArray
-                point.time_from_start = rospy.Duration(0.5)
-                state.points.append(point)
-                pub.publish(state)
-                rospy.sleep(1)
-                pass
+                    rospy.sleep(2)
+                    time.sleep(1)  
             
+            elif key == 'puntos':
+                
+                pointer = 38
+                points =(read_csv_XY(pointer,math.pi/2))
+                for pointArray in points:
+                    print(pointArray)
+                    point.positions = pointArray
+                    point.time_from_start = rospy.Duration(0.5)
+                    state.points.append(point)
+                    pub.publish(state)
+                    rospy.sleep(2)
+                    time.sleep(1)  
+
             elif key == 'x':
                 break

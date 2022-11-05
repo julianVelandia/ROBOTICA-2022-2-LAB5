@@ -23,17 +23,24 @@ def read_csv_XY(pointer,q5):
             d = 80
 
             D = math.sqrt(x**2+y**2)
-            beta = math.atan((z-L1)/D)
+            beta = math.atan2((z),D)
+            beta = math.atan2((z),D-L4)
             r = math.sqrt(D**2-z**2)
-            cosAlfa = (r-L4)/(2*L2)
+            cosAlfa = (r-L4*math.cos(beta))/(2*L2)
             sinAlfa = math.sqrt(1-cosAlfa**2)
             Alfa = math.atan2(sinAlfa,cosAlfa)
             q_1 = math.atan2(y,x)
-            q_2 = -(Alfa+beta)
             cosQ3 = ((r-L4)**2/(2*L2**2))-1
             sinQ3 = math.sqrt(1-cosQ3**2)
             q_3 = -math.atan2(sinQ3,cosQ3)
-            q_4 = Alfa
+            if z==40:
+                q_2 = -1.2367#-(Alfa+beta)
+            else:
+                q_2 = 0
+                q_3 = -1.5
+            print(q_2)
+            
+            q_4 = Alfa+2*beta
             
             Q.append([q_1,q_2,q_3,q_4,q_5])
         else:
